@@ -1,0 +1,137 @@
+<style>
+    .calculadora-fallout {
+        margin: 5%;
+        font-size: 12px;
+    }
+    .calculadora-fallout input {
+        width: 35px;
+        border: 0px;
+        height: 20px;
+        font-size: 15px;
+    }
+    .resultado-fallout {
+        margin-top: 5%;
+        font-size: 15px;
+    }
+    .boton-fallout {
+        height: 20px;
+        width: 100px;
+        font-weight: bold;
+        border: 0px;
+    }
+</style>
+<script type="text/javascript">
+	function calcFall() {
+		//CARACTERÍSTICAS
+		var fue = parseInt(document.getElementById("fue").value);
+        var con = parseInt(document.getElementById("con").value);
+		var agi = parseInt(document.getElementById("agi").value);
+		var per = parseInt(document.getElementById("per").value);
+		var inte = parseInt(document.getElementById("inte").value);
+		var car = parseInt(document.getElementById("car").value);
+        var lk = parseInt(document.getElementById("lk").value);
+        
+        //DAÑO MELEE
+		var dmg;
+		if (fue < 6) dmg = 1;
+        else dmg = fue - 5;
+        
+        //RATIO CURA
+		var rat;
+		if (con < 3) rat = 1;
+        else rat = Math.floor(con/3);
+        
+        //TEXTO
+		var texto = "[b][u]Atributos SPECIAL[/b][/u]<br>";
+        texto = texto + "Nivel: 1(0/1000 para nivel 2)<br><br>";
+        
+        texto = texto + "FUE: " + fue + "<br>";
+		texto = texto + "CON: " + con + "<br>";
+		texto = texto + "AGI: " + agi + "<br>";
+		texto = texto + "PER: " + per + "<br>";
+		texto = texto + "INT: " + inte + "<br>";
+		texto = texto + "CAR: " + car + "<br>";
+        texto = texto + "LK: " + lk + "<br><br>";
+        
+        texto = texto + "[u]Atributos Secundarios[/u]<br><br>";
+		
+		texto = texto + "Karma: 0<br>";
+		texto = texto + "PV: " + (15 + fue + (con*2)) + "<br>";
+		texto = texto + "AP: " + Math.floor(5 + (agi/2)) + "<br>";
+		texto = texto + "INI: " + (per*2) + "<br>";
+		texto = texto + "CA: " + agi + "<br>";
+		texto = texto + "Daño melé: " + dmg + "<br>";
+		texto = texto + "Crítico: " + lk + "%<br>";
+		texto = texto + "Ratio de curación: " + rat + "<br>";
+		texto = texto + "Carga máxima: " + (25 + Math.floor((25*fue)/2)) + " Lbs<br>";
+		texto = texto + "Resistencia al Veneno: " + (con*5) + "<br>";
+		texto = texto + "Resistencia a la Radiación: " + (con*2) + "<br>";
+		texto = texto + "Resistencia a la Electricidad: [Consultar Raza]<br>";
+		texto = texto + "Resistencia a Gases: 0<br><br>";
+		
+		texto = texto + "PH/niv: " + (5 + (2*inte)) + "<br>";
+		texto = texto + "PV/niv: " + (3 + Math.floor(con/2)) + "<br><br>";
+		
+		texto = texto + "[u]Rasgos[/u]<br>-Elegir máximo dos, y aplicar cambios manualmente.<br><br>";
+		
+		texto = texto + "[u]Especialidades[/u]<br>-Elige 3 habilidades para especializarte y súmales 20.<br><br>";
+		
+		texto = texto + "[u]Habilidades[/u]<br><br>";
+		
+		texto = texto + "Armas pequeñas: " + (5 + (4*agi)) + "<br>";
+		texto = texto + "Armas grandes: " + (2*agi) + "<br>";
+		texto = texto + "Armas de energía: " + (2*agi) + "<br>";
+		texto = texto + "Desarmado: " + (30 + (2*(fue+agi))) + "<br>";
+		texto = texto + "Armas Melé: " + (20 + (2*(fue+agi))) + "<br>";
+		texto = texto + "Lanzar: " + (4*agi) + "<br>";
+		texto = texto + "Primeros Auxilios: " + (2*(per+inte)) + "<br>";
+		texto = texto + "Doctor: " + (5+(per+inte)) + "<br>";
+		texto = texto + "Sigilo: " + (5+(3*agi)) + "<br>";
+		texto = texto + "Ganzúas: " + (10+(per+agi)) + "<br>";
+		texto = texto + "Robar: " + (3*agi) + "<br>";
+		texto = texto + "Trampas: " + (10+(per+agi)) + "<br>";
+		texto = texto + "Ciencia: " + (4*inte) + "<br>";
+		texto = texto + "Reparar: " + (3*inte) + "<br>";
+		texto = texto + "Pilotar: " + (2*(agi+per)) + "<br>";
+		texto = texto + "Diplomacia: " + (5*car) + "<br>";
+		texto = texto + "Trueque: " + (4*car) + "<br>";
+		texto = texto + "Juego: " + (5*lk) + "<br>";
+		texto = texto + "Supervivencia: " + (2*(con+inte)) + "<br>";
+		texto = texto + "Trepar: " + (5+(2*(fue+agi))) + "<br>";
+		texto = texto + "Nadar: " + (5+(2*(fue+con))) + "<br><br>";
+		
+		texto = texto + "[u]EQUIPO[/u]<br>[spoiler=armas]<br><br>[/spoiler]<br><br>[u]Munición[/u]<br><br>[u]Armadura[/u]<br><br>";
+		texto = texto + "[u]Objetos[/u]<br><br>[b]Carga Total:[/b] 0<br><br>[b]Chapas:[/b] 0";
+		
+		document.getElementById('resultado').innerHTML = texto;
+	}
+</script>
+<div class="calculadora-fallout">
+    <table>
+        <tr>
+            <td><label>FUE</label></td><td><input id="fue" type="number" /></td>
+        </tr>
+        <tr>
+            <td><label>CON</label></td><td><input id="con" type="number" /></td>
+        </tr>
+        <tr>
+            <td><label>AGI</label></td><td><input id="agi" type="number" /></td>
+        </tr>
+        <tr>
+            <td><label>PER</label></td><td><input id="per" type="number" /></td>
+        </tr>
+        <tr>
+            <td><label>INT</label></td><td><input id="inte" type="number" /></td>
+        </tr>
+        <tr>
+            <td><label>CAR</label></td><td><input id="car" type="number" /></td>
+        </tr>
+        <tr>
+            <td><label>LK</label></td><td><input id="lk" type="number" /></td>
+        </tr>
+    </table><br><br>
+
+    <button class="boton-fallout" onclick="calcFall()">Calcular</button>
+
+    <div class="resultado-fallout" id="resultado"></div>
+</div>
